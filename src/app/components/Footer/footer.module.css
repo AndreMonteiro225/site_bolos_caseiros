@@ -1,0 +1,30 @@
+/* Este é o novo 'src/components/Footer/Footer.module.css' */
+/* Estilos extraídos do 'Index.module.css' */
+
+.footer {
+  background-color: rgba(231, 189, 187, 0.3); /* cor-rosa-suave/30 */
+  padding: 3rem 0; /* py-12 */
+}
+
+.container {
+  max-width: 96rem; /* max-w-6xl */
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1.5rem; /* px-6 */
+}
+
+@media (min-width: 1024px) { /* lg: */
+  .container {
+    padding: 0 2rem; /* lg:px-8 */
+  }
+}
+
+.footerContainer {
+  text-align: center;
+  color: rgba(74, 63, 60, 0.7);
+}
+
+.footerSubtext {
+  font-size: 0.875rem; /* text-sm */
+  margin-top: 0.25rem; /* mt-1 */
+}

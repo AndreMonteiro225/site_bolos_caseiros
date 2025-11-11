@@ -1,0 +1,105 @@
+/* Este é o arquivo 'components/Header/Header.module.css' */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  width: 100%;
+  background-color: rgba(253, 251, 250, 0.8); /* var(--cor-fundo) com transparência */
+  backdrop-filter: blur(10px);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.07);
+}
+
+.nav {
+  container-type: inline-size;
+  max-width: 96rem; /* max-w-6xl */
+  margin: 0 auto;
+  padding: 0 1.5rem; /* px-6 */
+}
+
+.navContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 5rem; /* h-20 */
+}
+
+.logo {
+  font-size: 1.875rem; /* text-3xl */
+  font-weight: 700;
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--cor-texto);
+}
+
+.menuDesktop {
+  display: none; /* Oculto por padrão (mobile-first) */
+}
+
+@media (min-width: 768px) { /* breakpoint 'md' */
+  .menuDesktop {
+    display: flex;
+    gap: 2rem; /* space-x-8 */
+  }
+}
+
+.navLink {
+  font-weight: 500;
+  color: rgba(74, 63, 60, 0.7); /* text-texto/70 */
+  transition: color 0.2s ease-in-out;
+}
+
+.navLink:hover {
+  color: var(--cor-cta);
+}
+
+.btnContainerMobile {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .btnContainerMobile {
+    display: none;
+  }
+}
+
+.btnMobile {
+  color: var(--cor-texto);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.svgIcon {
+  width: 1.5rem; /* w-6 */
+  height: 1.5rem; /* h-6 */
+}
+
+.menuMobile {
+  display: block;
+  position: absolute;
+  top: 5rem; /* h-20 */
+  left: 0;
+  width: 100%;
+  background-color: var(--cor-fundo);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  padding: 1rem 0; /* py-4 */
+}
+
+@media (min-width: 768px) {
+  .menuMobile {
+    display: none;
+  }
+}
+
+.navLinkMobile {
+  display: block;
+  text-align: center;
+  padding: 0.75rem 1rem; /* py-3 px-4 */
+  font-size: 1.125rem; /* text-lg */
+  color: var(--cor-texto);
+}
+
+.navLinkMobile:hover {
+  background-color: rgba(231, 189, 187, 0.3); /* cor-rosa-suave com 30% */
+}

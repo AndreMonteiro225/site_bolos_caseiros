@@ -1,0 +1,157 @@
+/* Este é o arquivo 'components/Modal/Modal.module.css' */
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(3px);
+  z-index: 50;
+}
+
+.modalContainer {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: 91.666667%; /* w-11/12 */
+  max-width: 64rem; /* max-w-4xl */
+  max-height: 90vh;
+  background-color: var(--cor-fundo);
+  border-radius: 0.5rem; /* rounded-lg */
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.55); /* shadow-2xl */
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.modalContent {
+  flex: 1 1 0%;
+  overflow-y: auto;
+  padding: 2.5rem; /* p-10 */
+  background-color: rgb(220, 166, 175, 0.8); /* cor-rosa-suave/5 */
+
+}
+
+@media (max-width: 640px) {
+  .modalContent {
+    padding: 1.5rem; /* p-6 */
+  }
+}
+
+.layoutGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem; /* gap-10 */
+}
+
+@media (min-width: 768px) { /* md: */
+  .layoutGrid {
+    flex-direction: row;
+  }
+}
+
+.imageWrapper {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .imageWrapper {
+    width: 50%;
+  }
+}
+
+.modalImage {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.detailsWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .detailsWrapper {
+    width: 50%;
+  }
+}
+
+.modalTitle {
+  font-size: 3rem; /* text-5xl */
+  font-weight: 700;
+  color: var(--cor-texto);
+}
+
+@media (max-width: 640px) {
+  .modalTitle {
+    font-size: 2.25rem; /* text-4xl */
+  }
+}
+
+.modalPrice {
+  margin-top: 0.5rem; /* mt-2 */
+  font-size: 1.875rem; /* text-3xl */
+  font-weight: 700;
+  color: var(--cor-cta);
+}
+
+.divider {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-color: rgba(231, 189, 187, 0.5); /* cor-rosa-suave/50 */
+}
+
+.modalDescription {
+  font-size: 1.125rem; /* text-lg */
+  color: rgba(74, 63, 60, 0.8); /* text-texto/80 */
+  line-height: 1.75;
+}
+
+.ctaWrapper {
+  margin-top: auto; /* Empurra para o final */
+  padding-top: 2rem; /* pt-8 */
+}
+
+.ctaButton {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background-color: var(--cor-cta);
+  color: var(--cor-fundo);
+  font-weight: 700;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  font-size: 1.125rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s ease-in-out;
+}
+
+.ctaButton:hover {
+  background-color: var(--cor-cta-hover);
+}
+
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: rgba(74, 63, 60, 0.5); /* text-texto/50 */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: color 0.2s ease-in-out;
+}
+
+.closeButton:hover {
+  color: var(--cor-texto);
+}
+
+.svgIcon {
+  width: 2rem; /* w-8 */
+  height: 2rem; /* h-8 */
+}
