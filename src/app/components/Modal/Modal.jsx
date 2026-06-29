@@ -1,12 +1,11 @@
-// Este é o arquivo 'components/Modal/Modal.js'
-import { useEffect } from 'react';
 import Image from 'next/image';
+import { useEffect } from 'react';
+import { useCart } from '../../context/CartContext'; // <-- Importe o hook do carrinho
 import styles from './modal.module.css';
 
 export default function Modal({ bolo, onClose }) {
-  const numeroWhatsApp = '5511994246422'; // Número de telefone da Adê
+  const { addToCart } = useCart(); // <-- Puxe a função de adicionar
 
-  // Bloqueia o scroll do body quando o modal está aberto
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => {
@@ -16,69 +15,64 @@ export default function Modal({ bolo, onClose }) {
 
   if (!bolo) return null;
 
-  const mensagem = `Olá, Adê! Vi o bolo "${bolo.nome}" no site e gostaria de fazer uma encomenda.`;
-  const linkWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${encodeURIComponent(mensagem)}`;
-
   return (
     <>
       <div className={styles.backdrop} onClick={onClose}></div>
-      <div className={styles.modalContainer} role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+      <div className={styles.modalContainer} role="dialog" aria-modal="true">
         <div className={styles.modalContent}>
           <div className={styles.layoutGrid}>
             <div className={styles.imageWrapper}>
-              <Image
-                src={bolo.img}
-                alt={`Foto do ${bolo.nome}`}
-                width={600}
-                height={600}
-                className={styles.modalImage}
-              />
+              <Image src={bolo.img} alt={`Foto do ${bolo.nome}`} width={600} height={600} className={styles.modalImage} />
             </div>
 
-            {/* Detalhes */}
             <div className={styles.detailsWrapper}>
-              <h2 id="modal-titulo" className={styles.modalTitle}>{bolo.nome}</h2>
-              <p className={styles.modalPrice}>{bolo.preco}</p>
-              
+              <h2 className={styles.modalTitle}>{bolo.nome}</h2>
               <hr className={styles.divider} />
+              <p className={styles.modalDescription}>{bolo.descricao}</p>
               
-              <p className={styles.modalDescription}>
-                {bolo.descricao}
-              </p>
-              
-              <div className={styles.ctaWrapper}>
-                <a
-                  href={linkWhatsApp}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.ctaButton}
-                >
-                  Encomendar por WhatsApp
-                </a>
-                <a
-                  href={linkWhatsApp}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.ctaButton}
-                >
-                  Encomendar pelo site
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className={styles.pricesWrapper}>
-              <div className={styles.modalPrices}>
-                <p>{bolo.fatia}</p>
+              {/* ÁREA DE COMPRA */}
+              <div className={styles.purchaseArea}>
+                {/* Opção Fatia */}
+                <div className={styles.optionBox}>
+                  <div>
+                    <span className={styles.optionTitle}>Fatia</span>
+                    <p className={styles.optionPrice}>{bolo.fatia}</p>
+                  </div>
+                  <button 
+                    onClick={() => {
+                      addToCart(bolo, 'fatia', bolo.fatia);
+                      alert('Fatia adicionada ao carrinho!');
+                    }}
+                    className={styles.addBtn}
+                  >
+                    + Adicionar
+                  </button>
                 </div>
-                <div className={styles.modalPrices}>
-                <p>{bolo.boloInteiro}</p>
+
+                {/* Opção Bolo Inteiro */}
+                <div className={styles.optionBox}>
+                  <div>
+                    <span className={styles.optionTitle}>Bolo Inteiro</span>
+                    <p className={styles.optionPrice}>{bolo.boloInteiro}</p>
+                  </div>
+                  <button 
+                    onClick={() => {
+                      addToCart(bolo, 'inteiro', bolo.boloInteiro);
+                      alert('Bolo inteiro adicionado ao carrinho!');
+                    }}
+                    className={styles.addBtn}
+                  >
+                    + Adicionar
+                  </button>
+                </div>
               </div>
+
+            </div>
           </div>
         </div>
 
-        {/* Botão de Fechar */}
         <button onClick={onClose} className={styles.closeButton} aria-label="Fechar modal">
-          <svg className={styles.svgIcon} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <svg className={styles.svgIcon} fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
           </svg>
         </button>

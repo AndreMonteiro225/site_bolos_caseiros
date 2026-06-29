@@ -2,10 +2,15 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import styles from './header.module.css';
+import { useCart } from '../../context/CartContext';
 
 export default function Header() {
   const [menuAberto, setMenuAberto] = useState(false);
 
+  const { cart } = useCart();
+
+  const totalItems = cart.reduce((total, item) => total + item.quantidade, 0);
+  
   const toggleMenu = () => {
     setMenuAberto(!menuAberto);
   };
