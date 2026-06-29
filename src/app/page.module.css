@@ -1,4 +1,279 @@
-.localSection {
+/* Este arquivo estava quase vazio. 
+  Estou adicionando todas as classes de layout da página
+  que estavam faltando.
+*/
 
+/* --- Classes Utilitárias --- */
+.container {
+  max-width: 96rem; /* max-w-6xl */
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1.5rem; /* px-6 */
+}
+
+@media (min-width: 1024px) { /* lg: */
+  .container {
+    padding: 0 2rem; /* lg:px-8 */
+  }
+}
+
+.textLg {
+  font-size: 1.125rem; /* text-lg */
+  line-height: 1.75rem;
+  color: rgba(74, 63, 60, 0.8); /* text-texto/80 */
+  margin-top: 1rem;
+}
+.textLg:first-child {
+  margin-top: 0;
+}
+
+.sectionTitle {
+  font-size: 3rem; /* text-5xl */
+  font-weight: 700;
+  text-align: center;
+  color: var(--cor-texto);
+}
+
+.sectionTitleSm {
+  font-size: 3rem; /* text-5xl */
+  font-weight: 700;
+  color: var(--cor-texto);
+  text-align: left;
+}
+
+.sectionSubtitle {
+  margin-top: 1rem; /* mt-4 */
+  font-size: 1.125rem; /* text-lg */
+  text-align: center;
+  color: rgba(74, 63, 60, 0.7); /* text-texto/70 */
+  max-width: 42rem; /* max-w-xl */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* --- Seção Hero --- */
+.heroSection {
+  padding: 6rem 0; /* py-24 */
+  text-align: center;
+}
+
+@media (min-width: 640px) { /* sm: */
+  .heroSection {
+    padding: 8rem 0; /* sm:py-32 */
+  }
+}
+
+.heroTitle {
+  font-size: 3.75rem; /* text-6xl */
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--cor-texto);
+}
+
+.heroSubtitle {
+  font-size: 3rem; /* text-5xl */
+  font-weight: 700;
+  color: var(--cor-cta);
+}
+
+@media (min-width: 640px) {
+  .heroTitle {
+    font-size: 4.5rem; /* sm:text-7xl */
+  }
+  .heroSubtitle {
+    font-size: 3.75rem; /* sm:text-6xl */
+  }
+}
+
+@media (min-width: 1024px) {
+  .heroTitle {
+    font-size: 5rem; /* lg:text-8xl */
+  }
+  .heroSubtitle {
+    font-size: 4.5rem; /* lg:text-7xl */
+  }
+}
+
+.heroDescription {
+  margin-top: 1.5rem; /* mt-6 */
+  font-size: 1.125rem; /* text-lg */
+  max-width: 42rem; /* max-w-2xl */
+  margin-left: auto;
+  margin-right: auto;
+  color: rgba(74, 63, 60, 0.8); /* text-texto/80 */
+}
+
+.heroButton {
+  margin-top: 2.5rem; /* mt-10 */
+  display: inline-block;
+  background-color: var(--cor-cta);
+  color: var(--cor-fundo);
+  font-weight: 700;
+  padding: 1rem 2.5rem; /* py-4 px-10 */
+  border-radius: 0.5rem; /* rounded-lg */
+  font-size: 1.125rem; /* text-lg */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); /* shadow-md */
+  transition: background-color 0.2s ease-in-out;
+}
+
+.heroButton:hover {
+  background-color: var(--cor-cta-hover);
+}
+
+/* --- Seção Cardápio --- */
+.cardapioSection {
+  padding: 5rem 0; /* py-20 */
+  background-color: var(--cor-fundo-branco);
+}
+
+.cardGrid {
+  margin-top: 4rem; /* mt-16 */
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem; /* gap-8 */
+}
+
+@media (min-width: 640px) { /* sm: */
+  .cardGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) { /* lg: */
+  .cardGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem; /* lg:gap-12 */
+  }
+}
+
+/* --- Seção Sobre --- */
+.sobreSection {
+  padding: 6rem 0; /* py-24 */
+  background-color: var(--cor-fundo);
+}
+
+.sobreGrid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem; /* gap-12 */
+}
+
+@media (min-width: 768px) { /* md: */
+  .sobreGrid {
+    flex-direction: row;
+    gap: 4rem; /* lg:gap-16 */
+  }
+}
+
+.sobreImageWrapper {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .sobreImageWrapper {
+    width: 50%;
+  }
+}
+
+.sobreImage {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); /* shadow-xl */
+  aspect-ratio: 4 / 5;
+}
+
+.sobreTextWrapper {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .sobreTextWrapper {
+    width: 50%;
+  }
+}
+
+/* --- Seção Localização --- */
+.localSection {
+  padding: 6rem 0; /* py-24 */
+  background-color: var(--cor-fundo-branco);
+}
+
+.localGrid {
+  margin-top: 4rem; /* mt-16 */
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; /* gap-8 */
+}
+
+@media (min-width: 768px) { /* md: */
+  .localGrid {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 3rem; /* lg:gap-12 */
+  }
+}
+
+.localMapWrapper {
+  width: 100%;
+  height: 24rem; /* h-96 */
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 768px) {
+  .localMapWrapper {
+    width: 50%;
+    height: auto; /* md:h-auto */
+  }
+}
+
+.localInfoWrapper {
+  width: 100%;
+  background-color: var(--cor-fundo);
+  padding: 2rem; /* p-8 */
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .localInfoWrapper {
+    width: 50%;
+  }
+}
+
+.localInfoTitle {
+  font-size: 1.875rem; /* text-3xl */
+  font-weight: 700;
+  color: var(--cor-texto);
+}
+
+.localInfoSubtitle {
+  margin-top: 0.5rem; /* mt-2 */
+  font-size: 1rem; /* text-md */
+  color: rgba(74, 63, 60, 0.7);
+}
+
+.localDivider {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border: 0;
+  border-top: 1px solid rgba(231, 189, 187, 0.5); /* cor-rosa-suave/50 */
+}
+
+.localInfoList {
+  margin-top: 1rem;
+  list-style: none;
+  padding-left: 0;
+  font-size: 1.125rem;
+  color: rgba(74, 63, 60, 0.8);
+  display: flex;
+  flex-direction: column;
   gap: 0.5rem; /* space-y-2 */
 }

@@ -4,7 +4,7 @@ import Image from 'next/image';
 import styles from './modal.module.css';
 
 export default function Modal({ bolo, onClose }) {
-  const numeroWhatsApp = '5511999998888'; // Número de telefone da Adê
+  const numeroWhatsApp = '5511994246422'; // Número de telefone da Adê
 
   // Bloqueia o scroll do body quando o modal está aberto
   useEffect(() => {
@@ -25,7 +25,6 @@ export default function Modal({ bolo, onClose }) {
       <div className={styles.modalContainer} role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
         <div className={styles.modalContent}>
           <div className={styles.layoutGrid}>
-            {/* Imagem */}
             <div className={styles.imageWrapper}>
               <Image
                 src={bolo.img}
@@ -56,8 +55,24 @@ export default function Modal({ bolo, onClose }) {
                 >
                   Encomendar por WhatsApp
                 </a>
+                <a
+                  href={linkWhatsApp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.ctaButton}
+                >
+                  Encomendar pelo site
+                </a>
               </div>
             </div>
+          </div>
+          <div className={styles.pricesWrapper}>
+              <div className={styles.modalPrices}>
+                <p>{bolo.fatia}</p>
+                </div>
+                <div className={styles.modalPrices}>
+                <p>{bolo.boloInteiro}</p>
+              </div>
           </div>
         </div>
 

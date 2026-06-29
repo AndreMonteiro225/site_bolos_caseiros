@@ -16,6 +16,8 @@ const bolosMock = [
     descricaoCurta: "Massa fofinha de fubá com generosos pedaços de goiabada cascão...",
     preco: "R$ 59,90",
     img: "/OIP.webp",
+    fatia: "Fatia: R$ 9,90",
+    boloInteiro: "Bolo Inteiro: R$ 59,90",
     priority: true,
   },
   {
@@ -26,6 +28,8 @@ const bolosMock = [
     preco: "R$ 89,90",
     img: "/OIP.webp",
     priority: true,
+    fatia: "Fatia: R$ 12,90",
+    boloInteiro: "Bolo Inteiro: R$ 89,90",
   },
   {
     id: 3,
@@ -35,6 +39,8 @@ const bolosMock = [
     preco: "R$ 95,00",
     img: "/OIP.webp",
     priority: false,
+    fatia: "Fatia: R$ 14,90",
+    boloInteiro: "Bolo Inteiro: R$ 95,00",
   },
   {
     id: 4,
@@ -44,7 +50,20 @@ const bolosMock = [
     preco: "R$ 65,00",
     img: "/OIP.webp",
     priority: false,
+    fatia: "Fatia: R$ 10,90",
+    boloInteiro: "Bolo Inteiro: R$ 65,00",
   },
+  {
+    id: 5,
+    nome: "Cenoura com Brigadeiro",
+    descricao: "O favorito de todos. Massa de cenoura super molhadinha, feita com cenouras frescas, coberta com uma camada vulcão de brigadeiro cremoso ao leite.",
+    descricaoCurta: "Massa de cenoura molhadinha com cobertura vulcão de brigadeiro...",
+    preco: "R$ 65,00",
+    img: "/OIP.webp",
+    priority: false,
+    fatia: "Fatia: R$ 10,90",
+    boloInteiro: "Bolo Inteiro: R$ 65,00",
+  }
 ];
 
 

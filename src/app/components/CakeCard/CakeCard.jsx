@@ -24,6 +24,10 @@ export default function CakeCard({ bolo, onCardClick }) {
         <p className={styles.cardDescription}>{bolo.descricaoCurta}</p>
         <p className={styles.cardPrice}>{bolo.preco}</p>
       </div>
+      <div className={styles.cardContent}>
+        <p>{bolo.fatia}</p>
+        <p>{bolo.boloInteiro}</p>
+      </div>
     </div>
   );
 }
