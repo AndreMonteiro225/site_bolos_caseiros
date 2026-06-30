@@ -24,12 +24,7 @@ export function CartProvider({ children }) {
             : item
         );
       }
-      //adicionar uma unidade do item ao carrinho
-      const addOne = prevCart.map((item) =>
-        item.id === bolo.id && item.tipo === tipo
-          ? { ...item, quantidade: item.quantidade + 1 }
-          : item
-      );
+
 
       // Converte o preço de "R$ 15,00" para número para facilitar a soma no final
       const precoNumerico = parseFloat(
@@ -57,8 +52,19 @@ export function CartProvider({ children }) {
     );
   };
 
+const updateQuantity = (id, tipo, delta) => {
+    setCart((prevCart) => {
+      return prevCart.map((item) => {
+        if (item.id === id && item.tipo === tipo) {
+          return { ...item, quantidade: item.quantidade + delta };
+        }
+        return item;
+      }).filter((item) => item.quantidade > 0); // Se chegar a 0, remove do carrinho automaticamente
+    });
+  };
+
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, updateQuantity }}>
       {children}
     </CartContext.Provider>
   );
