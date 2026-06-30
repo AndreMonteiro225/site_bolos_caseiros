@@ -4,9 +4,10 @@ import { createContext, useState, useContext } from 'react';
 
 const CartContext = createContext();
 
+
 export function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
-
+  
   // Função para adicionar ao carrinho
   const addToCart = (bolo, tipo, precoString) => {
     setCart((prevCart) => {
@@ -23,6 +24,12 @@ export function CartProvider({ children }) {
             : item
         );
       }
+      //adicionar uma unidade do item ao carrinho
+      const addOne = prevCart.map((item) =>
+        item.id === bolo.id && item.tipo === tipo
+          ? { ...item, quantidade: item.quantidade + 1 }
+          : item
+      );
 
       // Converte o preço de "R$ 15,00" para número para facilitar a soma no final
       const precoNumerico = parseFloat(

@@ -103,3 +103,36 @@
 .navLinkMobile:hover {
   background-color: rgba(231, 189, 187, 0.3); /* cor-rosa-suave com 30% */
 }
+
+.cartIconWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: var(--cor-texto);
+  transition: opacity 0.2s;
+}
+
+.cartIconWrapper:hover {
+  opacity: 0.8;
+}
+
+.cartIcon {
+  width: 28px;
+  height: 28px;
+}
+
+.cartBadge {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background-color: var(--cor-cta);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: bold;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

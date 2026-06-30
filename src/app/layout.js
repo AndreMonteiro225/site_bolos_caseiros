@@ -31,13 +31,13 @@ export default function RootLayout({ children }) {
       className={`${cormorant.variable} ${nunito_sans.variable}`}
     >
       <body>
+          <CartProvider>
         <Header />
         <main>
-          <CartProvider>
             {children}
-          </CartProvider>
         </main>
         <Footer />
+          </CartProvider>
       </body>
     </html>
   );
