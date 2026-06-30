@@ -212,3 +212,45 @@
     transform: rotate(360deg);
   }
 }
+
+/* Adicione no final do seu modal.module.css */
+
+.quantityControl {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.qtyBtn {
+  background-color: var(--cor-fundo);
+  border: 1px solid rgba(74, 63, 60, 0.2);
+  border-radius: 0.25rem;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: var(--cor-texto);
+  transition: background-color 0.2s, opacity 0.2s;
+}
+
+.qtyBtn:hover:not(:disabled) {
+  background-color: rgba(231, 189, 187, 0.4);
+}
+
+/* Deixa o botão "-" mais claro (desativado) quando a quantidade for 0 */
+.qtyBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.qtyDisplay {
+  font-weight: 600;
+  font-size: 1.1rem;
+  min-width: 1.5rem;
+  text-align: center;
+  color: var(--cor-texto);
+}

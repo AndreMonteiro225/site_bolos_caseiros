@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className={styles.footer}>
       <div className={`${styles.container} ${styles.footerContainer}`}>
         <p>&copy; 2025 Bolos da Adê. Todos os direitos reservados.</p>
-        <p className={styles.footerSubtext}>Feito com ♡ e Next.js</p>
+        <p className={styles.footerSubtext}>bolos frescos feitos diariamente</p>
       </div>
     </footer>
   );

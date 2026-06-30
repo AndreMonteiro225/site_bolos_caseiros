@@ -1,10 +1,11 @@
 import Image from 'next/image';
 import { useEffect } from 'react';
-import { useCart } from '../../context/CartContext'; // <-- Importe o hook do carrinho
+import { useCart } from '../../context/CartContext';
 import styles from './modal.module.css';
 
 export default function Modal({ bolo, onClose }) {
-  const { addToCart } = useCart(); // <-- Puxe a função de adicionar
+  // Trazemos as informações necessárias do carrinho
+  const { cart, addToCart, updateQuantity } = useCart();
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -14,6 +15,32 @@ export default function Modal({ bolo, onClose }) {
   }, []);
 
   if (!bolo) return null;
+
+  // Função auxiliar: Procura no carrinho a quantidade deste bolo no tipo selecionado (fatia ou inteiro)
+  const getQuantity = (tipo) => {
+    const item = cart.find((i) => i.id === bolo.id && i.tipo === tipo);
+    return item ? item.quantidade : 0;
+  };
+
+  // Função para lidar com o botão "+"
+  const handleIncrease = (tipo, precoString) => {
+    const currentQty = getQuantity(tipo);
+    if (currentQty === 0) {
+      // Se não tem no carrinho, adiciona o primeiro
+      addToCart(bolo, tipo, precoString);
+    } else {
+      // Se já tem, soma +1
+      updateQuantity(bolo.id, tipo, 1);
+    }
+  };
+
+  // Função para lidar com o botão "-"
+  const handleDecrease = (tipo) => {
+    const currentQty = getQuantity(tipo);
+    if (currentQty > 0) {
+      updateQuantity(bolo.id, tipo, -1);
+    }
+  };
 
   return (
     <>
@@ -32,21 +59,31 @@ export default function Modal({ bolo, onClose }) {
               
               {/* ÁREA DE COMPRA */}
               <div className={styles.purchaseArea}>
+                
                 {/* Opção Fatia */}
                 <div className={styles.optionBox}>
                   <div>
                     <span className={styles.optionTitle}>Fatia</span>
                     <p className={styles.optionPrice}>{bolo.fatia}</p>
                   </div>
-                  <button 
-                    onClick={() => {
-                      addToCart(bolo, 'fatia', bolo.fatia);
-                      alert('Fatia adicionada ao carrinho!');
-                    }}
-                    className={styles.addBtn}
-                  >
-                    + Adicionar
-                  </button>
+                  
+                  {/* Novo Display de Quantidade */}
+                  <div className={styles.quantityControl}>
+                    <button 
+                      onClick={() => handleDecrease('fatia')} 
+                      className={styles.qtyBtn}
+                      disabled={getQuantity('fatia') === 0}
+                    >
+                      -
+                    </button>
+                    <span className={styles.qtyDisplay}>{getQuantity('fatia')}</span>
+                    <button 
+                      onClick={() => handleIncrease('fatia', bolo.fatia)} 
+                      className={styles.qtyBtn}
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
 
                 {/* Opção Bolo Inteiro */}
@@ -55,18 +92,27 @@ export default function Modal({ bolo, onClose }) {
                     <span className={styles.optionTitle}>Bolo Inteiro</span>
                     <p className={styles.optionPrice}>{bolo.boloInteiro}</p>
                   </div>
-                  <button 
-                    onClick={() => {
-                      addToCart(bolo, 'inteiro', bolo.boloInteiro);
-                      alert('Bolo inteiro adicionado ao carrinho!');
-                    }}
-                    className={styles.addBtn}
-                  >
-                    + Adicionar
-                  </button>
+                  
+                  {/* Novo Display de Quantidade */}
+                  <div className={styles.quantityControl}>
+                    <button 
+                      onClick={() => handleDecrease('inteiro')} 
+                      className={styles.qtyBtn}
+                      disabled={getQuantity('inteiro') === 0}
+                    >
+                      -
+                    </button>
+                    <span className={styles.qtyDisplay}>{getQuantity('inteiro')}</span>
+                    <button 
+                      onClick={() => handleIncrease('inteiro', bolo.boloInteiro)} 
+                      className={styles.qtyBtn}
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
-              </div>
 
+              </div>
             </div>
           </div>
         </div>
