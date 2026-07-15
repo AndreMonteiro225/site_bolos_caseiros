@@ -81,3 +81,68 @@
   text-align: right;
   color: var(--cor-cta);
 }
+
+.itensList {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.itensList h4 {
+  margin-bottom: 0.8rem;
+  font-size: 1rem;
+  color: var(--cor-texto);
+}
+
+.itensList ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.itensList li {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  color: #333;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px dashed #ddd;
+}
+
+.itensList li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.itemPreco {
+  color: #666;
+  font-weight: 500;
+}
+
+.statusSelect {
+  background-color: var(--cor-secundaria);
+  color: var(--cor-texto);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: 1px solid rgba(74, 63, 60, 0.2);
+  outline: none;
+  cursor: pointer;
+  appearance: none; /* Remove a setinha padrão feia do navegador */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.statusSelect:hover {
+  background-color: #d1a8a6;
+}
+
+.statusSelect:focus {
+  border-color: var(--cor-texto);
+}

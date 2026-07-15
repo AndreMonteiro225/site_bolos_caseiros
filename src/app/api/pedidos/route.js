@@ -55,12 +55,26 @@ export async function POST(request) {
   }
 }
 
-// Busca os pedidos para mostrar no Painel da Administração
+// Busca os pedidos e seus respectivos bolos
 export async function GET() {
   try {
-    // Busca todos os pedidos, ordenando do mais recente para o mais antigo
-    const query = `SELECT * FROM pedidos ORDER BY criado_em DESC`;
-    const [pedidos] = await pool.execute(query);
+    // 1. Busca todos os pedidos
+    const queryPedidos = `SELECT * FROM pedidos ORDER BY criado_em DESC`;
+    const [pedidos] = await pool.execute(queryPedidos);
+
+    // Se não tiver nenhum pedido, já devolve vazio
+    if (pedidos.length === 0) {
+      return NextResponse.json({ success: true, pedidos: [] }, { status: 200 });
+    }
+
+    // 2. Para cada pedido encontrado, busca os bolos dele na tabela itens_pedido
+    for (let i = 0; i < pedidos.length; i++) {
+      const queryItens = `SELECT * FROM itens_pedido WHERE pedido_id = ?`;
+      const [itens] = await pool.execute(queryItens, [pedidos[i].id]);
+      
+      // Gruda os itens dentro do objeto do pedido
+      pedidos[i].itens = itens; 
+    }
 
     return NextResponse.json({ 
       success: true, 
@@ -68,10 +82,27 @@ export async function GET() {
     }, { status: 200 });
 
   } catch (error) {
-    console.error('Erro ao buscar pedidos:', error);
+    console.error('Erro ao buscar pedidos com itens:', error);
     return NextResponse.json({ 
       success: false, 
       message: 'Erro interno ao buscar pedidos.' 
     }, { status: 500 });
+  }
+}
+
+// Atualiza o status do pedido no painel de administração
+export async function PUT(request) {
+  try {
+    const body = await request.json();
+    const { id, novoStatus } = body;
+
+    const query = `UPDATE pedidos SET status = ? WHERE id = ?`;
+    await pool.execute(query, [novoStatus, id]);
+
+    return NextResponse.json({ success: true, message: 'Status atualizado com sucesso!' }, { status: 200 });
+
+  } catch (error) {
+    console.error('Erro ao atualizar status:', error);
+    return NextResponse.json({ success: false, message: 'Erro ao atualizar' }, { status: 500 });
   }
 }
