@@ -16,8 +16,8 @@ const bolosMock = [
     descricaoCurta: "Massa fofinha de fubá com generosos pedaços de goiabada cascão...",
     preco: "59,90",
     img: "/OIP.webp",
-    fatia: "Fatia: R$ 9,90",
-    boloInteiro: "Bolo Inteiro: R$ 59,90",
+    fatia: "9,90",
+    boloInteiro: "59,90",
     priority: true,
   },
   {
@@ -28,8 +28,8 @@ const bolosMock = [
     preco: "89,90",
     img: "/OIP.webp",
     priority: true,
-    fatia: "Fatia: R$ 12,90",
-    boloInteiro: "Bolo Inteiro: R$ 89,90",
+    fatia: "12,90",
+    boloInteiro: "89,90",
   },
   {
     id: 3,
@@ -39,8 +39,8 @@ const bolosMock = [
     preco: "95,00",
     img: "/OIP.webp",
     priority: false,
-    fatia: "Fatia: R$ 14,90",
-    boloInteiro: "Bolo Inteiro: R$ 95,00",
+    fatia: "14,90",
+    boloInteiro: "95,00",
   },
   {
     id: 4,
@@ -50,8 +50,8 @@ const bolosMock = [
     preco: "65,00",
     img: "/OIP.webp",
     priority: false,
-    fatia: "Fatia: R$ 10,90",
-    boloInteiro: "Bolo Inteiro: R$ 65,00",
+    fatia: "10,90",
+    boloInteiro: "65,00",
   },
   {
     id: 5,
@@ -61,8 +61,8 @@ const bolosMock = [
     preco: "R$ 65,00",
     img: "/OIP.webp",
     priority: false,
-    fatia: "Fatia: R$ 10,90",
-    boloInteiro: "Bolo Inteiro: R$ 65,00",
+    fatia: "10,90",
+    boloInteiro: "65,00",
   }
 ];
 

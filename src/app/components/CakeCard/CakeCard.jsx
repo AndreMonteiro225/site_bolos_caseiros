@@ -22,11 +22,11 @@ export default function CakeCard({ bolo, onCardClick }) {
       <div className={styles.cardContent}>
         <h3 className={styles.cardTitle}>{bolo.nome}</h3>
         <p className={styles.cardDescription}>{bolo.descricaoCurta}</p>
-        <p className={styles.cardPrice}>{bolo.preco}</p>
+        {/* <p className={styles.cardPrice}>R$ {bolo.preco}</p> */}
       </div>
       <div className={styles.cardContent}>
-        <p>{bolo.fatia}</p>
-        <p>{bolo.boloInteiro}</p>
+        <p className={styles.cardPrice}>R$ {bolo.fatia} - Fatia</p>
+        <p className={styles.cardPrice}>R$ {bolo.boloInteiro} - Bolo Inteiro</p>
       </div>
     </div>
   );

@@ -64,10 +64,10 @@ export default function Modal({ bolo, onClose }) {
                 <div className={styles.optionBox}>
                   <div>
                     <span className={styles.optionTitle}>Fatia</span>
-                    <p className={styles.optionPrice}>{bolo.fatia}</p>
+                    <p className={styles.optionPrice}>R${bolo.fatia}</p>
                   </div>
                   
-                  {/* Novo Display de Quantidade */}
+                  {/* Display de Quantidade */}
                   <div className={styles.quantityControl}>
                     <button 
                       onClick={() => handleDecrease('fatia')} 
@@ -90,7 +90,7 @@ export default function Modal({ bolo, onClose }) {
                 <div className={styles.optionBox}>
                   <div>
                     <span className={styles.optionTitle}>Bolo Inteiro</span>
-                    <p className={styles.optionPrice}>{bolo.boloInteiro}</p>
+                    <p className={styles.optionPrice}>R$ {bolo.boloInteiro}</p>
                   </div>
                   
                   {/* Novo Display de Quantidade */}

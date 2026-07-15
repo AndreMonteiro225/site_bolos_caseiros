@@ -1,0 +1,83 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.title {
+  color: var(--cor-texto);
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  border-bottom: 2px solid var(--cor-secundaria);
+  padding-bottom: 0.5rem;
+}
+
+.loading, .empty {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #666;
+  margin-top: 3rem;
+}
+
+.pedidosGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.pedidoCard {
+  background-color: #ffffff;
+  border: 1px solid #eaeaea;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.pedidoHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eaeaea;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.pedidoHeader h2 {
+  font-size: 1.3rem;
+  color: var(--cor-texto);
+}
+
+.status {
+  background-color: var(--cor-secundaria);
+  color: var(--cor-texto);
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.pedidoBody {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: #444;
+}
+
+.obs {
+  background-color: #fff9db;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border-left: 4px solid #fcc419;
+  margin-top: 0.5rem;
+}
+
+.pedidoFooter {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px dashed #ccc;
+  text-align: right;
+  color: var(--cor-cta);
+}
