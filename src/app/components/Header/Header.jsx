@@ -23,15 +23,15 @@ export default function Header() {
     <header className={styles.header}>
       <nav className={styles.nav}>
         <div className={styles.navContainer}>
-          <Link href="/" legacyBehavior>
-            <a className={styles.logo}>Bolos da Adê</a>
+          <Link href="/" className={styles.logo}>
+            Bolos da Adê
           </Link>
 
           {/* Menu Desktop */}
           <div className={styles.menuDesktop}>
-            <Link href="#cardapio" legacyBehavior><a className={styles.navLink}>Cardápio</a></Link>
-            <Link href="#sobre" legacyBehavior><a className={styles.navLink}>Quem Somos</a></Link>
-            <Link href="#local" legacyBehavior><a className={styles.navLink}>Localização</a></Link>
+            <Link href="#cardapio" className={styles.navLink}>Cardápio</Link>
+            <Link href="#sobre" className={styles.navLink}>Quem Somos</Link>
+            <Link href="#local" className={styles.navLink}>Localização</Link>
           </div>
           
           {/* Botão Mobile */}
@@ -72,9 +72,9 @@ export default function Header() {
         {/* Menu Mobile (Oculto) */}
         {menuAberto && (
           <div className={styles.menuMobile}>
-            <Link href="#cardapio" legacyBehavior><a className={styles.navLinkMobile} onClick={fecharMenu}>Cardápio</a></Link>
-            <Link href="#sobre" legacyBehavior><a className={styles.navLinkMobile} onClick={fecharMenu}>Quem Somos</a></Link>
-            <Link href="#local" legacyBehavior><a className={styles.navLinkMobile} onClick={fecharMenu}>Localização</a></Link>
+            <Link href="#cardapio" className={styles.navLinkMobile} onClick={fecharMenu}>Cardápio</Link>
+            <Link href="#sobre" className={styles.navLinkMobile} onClick={fecharMenu}>Quem Somos</Link>
+            <Link href="#local" className={styles.navLinkMobile} onClick={fecharMenu}>Localização</Link>
           </div>
         )}
       </nav>
