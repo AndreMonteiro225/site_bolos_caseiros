@@ -6,7 +6,6 @@ export async function POST(request) {
     const body = await request.json();
     const { cart, pedidoId } = body;
 
-    // Pega a URL raiz automaticamente (localhost ou vercel)
     const origin = request.nextUrl.origin;
 
     const client = new MercadoPagoConfig({ accessToken: process.env.MP_ACCESS_TOKEN });
@@ -24,6 +23,17 @@ export async function POST(request) {
       body: {
         items: itemsMP,
         external_reference: String(pedidoId), 
+        
+        // --- NOVA CONFIGURAÇÃO DE PAGAMENTOS ---
+        payment_methods: {
+          excluded_payment_types: [
+            { id: "ticket" }, // Bloqueia Boleto Bancário
+            { id: "atm" }     // Bloqueia Pagamento em Lotérica
+          ],
+          // installments: 1
+        },
+        // ---------------------------------------
+
         back_urls: {
           success: `${origin}/sucesso`,
           failure: `${origin}/carrinho`,
