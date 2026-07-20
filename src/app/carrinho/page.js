@@ -35,57 +35,32 @@ export default function CarrinhoPage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
     e.preventDefault();
 
     const payload = { formData, cart, valorTotal };
 
     try {
       // 1. Envia os dados para a API (MySQL)
-      const response = await fetch("/api/pedidos", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      const response = await fetch('/api/pedidos', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
 
       const data = await response.json();
 
       if (!data.success) {
-        alert("Ops! Houve um erro ao processar seu pedido.");
+        alert('Ops! Houve um erro ao processar seu pedido.');
         return;
       }
 
-      const numeroPedido = data.pedidoId;
+      // 2. Mensagem de Sucesso para o Cliente
+      alert(`🎉 Sucesso! Seu pedido (Nº ${data.pedidoId}) foi enviado para a Adê!\n\nFique de olho, logo ela começará a preparar seu bolo.`);
 
-      let mensagem = `*NOVO PEDIDO - Nº ${numeroPedido}*\n\n`;
-      mensagem += `*Cliente:* ${formData.nome}\n`;
-      mensagem += `*WhatsApp:* ${formData.telefone}\n`;
-      mensagem += `*Tipo de Pedido:* ${formData.tipoPedido}\n`;
+      // 3. Redireciona o cliente de volta para a página inicial
+      window.location.href = '/';
 
-      if (formData.tipoPedido === "Entrega") {
-        mensagem += `*Endereço:* ${formData.enderecoRua}, ${formData.enderecoNumero} - ${formData.enderecoBairro}`;
-        if (formData.enderecoComplemento) {
-          mensagem += ` (${formData.enderecoComplemento})`;
-        }
-        mensagem += `\n`;
-      }
-
-      mensagem += `*Pagamento:* ${formData.metodoPagamento}\n`;
-      if (formData.observacoes) {
-        mensagem += `*Observações:* ${formData.observacoes}\n`;
-      }
-
-      mensagem += `\n*RESUMO DO PEDIDO:*\n`;
-      cart.forEach((item) => {
-        mensagem += `- ${item.quantidade}x ${item.nome} (${item.tipo}) - R$ ${(item.preco * item.quantidade).toFixed(2)}\n`;
-      });
-
-      mensagem += `\n*Total: R$ ${valorTotal.toFixed(2)}*`;
-
-      // 3. Abre o WhatsApp com segurança usando encodeURIComponent
-      const numeroWhatsApp = "5511994246422";
-      const linkWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${encodeURIComponent(mensagem)}`;
-      window.open(linkWhatsApp, "_blank");
     } catch (error) {
       console.error("Erro:", error);
       alert("Erro de conexão com o servidor.");
