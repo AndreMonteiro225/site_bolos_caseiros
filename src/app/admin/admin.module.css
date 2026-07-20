@@ -78,10 +78,15 @@
   margin-top: 1.5rem;
   padding-top: 1rem;
   border-top: 1px dashed #ccc;
-  text-align: right;
-  color: var(--cor-cta);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
+.pedidoFooter h3 {
+  margin: 0;
+  color: var(--cor-cta);
+}
 .itensList {
   background-color: #f8f9fa;
   padding: 1rem;
@@ -145,4 +150,119 @@
 
 .statusSelect:focus {
   border-color: var(--cor-texto);
+}
+
+/* Estilos da Tela de Login e Header */
+.loginContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+}
+
+.loginBox {
+  background-color: #fff;
+  padding: 3rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+.loginBox h2 {
+  color: var(--cor-texto);
+  margin-bottom: 0.5rem;
+}
+
+.loginBox p {
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.loginInput {
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.loginInput:focus {
+  border-color: var(--cor-cta);
+}
+
+.loginBtn {
+  background-color: var(--cor-cta);
+  color: white;
+  border: none;
+  padding: 0.9rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.loginBtn:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.erroText {
+  color: #e03131;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.headerDashboard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--cor-secundaria);
+  margin-bottom: 2rem;
+  padding-bottom: 0.5rem;
+}
+
+.headerDashboard h1 {
+  margin: 0;
+  border: none;
+  padding: 0;
+}
+
+.logoutBtn {
+  background-color: transparent;
+  color: #666;
+  border: 1px solid #ccc;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.logoutBtn:hover {
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+.btnDeletar {
+  background-color: transparent;
+  color: #dc3545;
+  border: 1px solid #dc3545;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+}
+
+.btnDeletar:hover {
+  background-color: #dc3545;
+  color: white;
 }

@@ -106,3 +106,20 @@ export async function PUT(request) {
     return NextResponse.json({ success: false, message: 'Erro ao atualizar' }, { status: 500 });
   }
 }
+
+// Deleta um pedido permanentemente do banco de dados
+export async function DELETE(request) {
+  try {
+    const body = await request.json();
+    const { id } = body;
+
+    const query = `DELETE FROM pedidos WHERE id = ?`;
+    await pool.execute(query, [id]);
+
+    return NextResponse.json({ success: true, message: 'Pedido deletado com sucesso!' }, { status: 200 });
+
+  } catch (error) {
+    console.error('Erro ao deletar pedido:', error);
+    return NextResponse.json({ success: false, message: 'Erro interno ao deletar.' }, { status: 500 });
+  }
+}
