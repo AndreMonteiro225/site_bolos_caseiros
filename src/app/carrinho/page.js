@@ -41,25 +41,43 @@ const handleSubmit = async (e) => {
     const payload = { formData, cart, valorTotal };
 
     try {
-      // 1. Envia os dados para a API (MySQL)
-      const response = await fetch('/api/pedidos', {
+      // 1. Salva o pedido no banco de dados primeiro (Pendente)
+      const responsePedido = await fetch('/api/pedidos', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
 
-      const data = await response.json();
+      const dataPedido = await responsePedido.json();
 
-      if (!data.success) {
-        alert('Ops! Houve um erro ao processar seu pedido.');
+      if (!dataPedido.success) {
+        alert('Ops! Houve um erro ao salvar o pedido.');
         return;
       }
 
-      // 2. Mensagem de Sucesso para o Cliente
-      alert(`🎉 Sucesso! Seu pedido (Nº ${data.pedidoId}) foi enviado para a Adê!\n\nFique de olho, logo ela começará a preparar seu bolo.`);
+      // 2. Pede a tela de pagamento para a nossa nova API do Mercado Pago
+      // window.location.origin pega automaticamente se é localhost ou o link da Vercel
+      const originUrl = window.location.origin; 
+      
+      const responseCheckout = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          cart: cart,
+          pedidoId: dataPedido.pedidoId,
+          originUrl: originUrl
+        }),
+      });
 
-      // 3. Redireciona o cliente de volta para a página inicial
-      window.location.href = '/';
+      const dataCheckout = await responseCheckout.json();
+
+      if (!dataCheckout.success) {
+        alert('Pedido salvo, mas houve um erro ao gerar o link de pagamento.');
+        return;
+      }
+
+      // 3. O momento mágico: Redireciona o cliente para a tela segura do Mercado Pago!
+      window.location.href = dataCheckout.url;
 
     } catch (error) {
       console.error("Erro:", error);
