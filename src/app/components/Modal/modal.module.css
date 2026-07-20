@@ -1,5 +1,3 @@
-/* Este é o arquivo 'components/Modal/Modal.module.css' */
-
 .backdrop {
   position: fixed;
   inset: 0;
@@ -28,12 +26,12 @@
   flex: 1 1 0%;
   padding: 2.5rem; /* p-10 */
   background-color: rgb(220, 166, 175, 0.8); /* cor-rosa-suave/5 */
-
 }
 
 @media (max-width: 640px) {
   .modalContent {
     padding: 1.5rem; /* p-6 */
+    overflow-y: scroll;
   }
 }
 
