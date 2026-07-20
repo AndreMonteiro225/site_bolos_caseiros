@@ -189,7 +189,7 @@ export default function AdminDashboard() {
                 <p><strong>Cliente:</strong> {pedido.cliente_nome}</p>
                 <p><strong>WhatsApp:</strong> {pedido.telefone}</p>
                 <p><strong>Tipo:</strong> {pedido.tipo_pedido}</p>
-                
+                <p><strong>Data:</strong> {new Date(pedido.criado_em).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' })}</p>
                 {pedido.tipo_pedido === 'Entrega' && (
                   <p><strong>Endereço:</strong> {pedido.endereco_rua}, {pedido.endereco_numero} - {pedido.endereco_bairro}</p>
                 )}
