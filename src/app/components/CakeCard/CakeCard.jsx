@@ -22,7 +22,6 @@ export default function CakeCard({ bolo, onCardClick }) {
       <div className={styles.cardContent}>
         <h3 className={styles.cardTitle}>{bolo.nome}</h3>
         <p className={styles.cardDescription}>{bolo.descricaoCurta}</p>
-        {/* <p className={styles.cardPrice}>R$ {bolo.preco}</p> */}
       </div>
       <div className={styles.cardContent}>
         <p className={styles.cardPrice}>R$ {bolo.fatia} - Fatia</p>

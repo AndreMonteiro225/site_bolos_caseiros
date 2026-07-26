@@ -22,7 +22,8 @@ export async function POST(request) {
     const resposta = await preference.create({
       body: {
         items: itemsMP,
-        external_reference: String(pedidoId), 
+        external_reference: String(pedidoId),
+        notification_url: `${origin}/api/webhook`, 
         
         // --- NOVA CONFIGURAÇÃO DE PAGAMENTOS ---
         payment_methods: {
@@ -30,7 +31,7 @@ export async function POST(request) {
             { id: "ticket" }, // Bloqueia Boleto Bancário
             { id: "atm" }     // Bloqueia Pagamento em Lotérica
           ],
-          // installments: 1
+           installments: 1
         },
         // ---------------------------------------
 
@@ -43,7 +44,7 @@ export async function POST(request) {
       }
     });
 
-    return NextResponse.json({ success: true, url: resposta.init_point });
+    return NextResponse.json({ success: true, url: resposta.sandbox_init_point });
 
   } catch (error) {
     console.error("Erro no Mercado Pago:", error);

@@ -7,7 +7,7 @@ import { useCart } from "../context/CartContext";
 import styles from "./carrinho.module.css";
 
 export default function CarrinhoPage() {
-  const { cart, removeFromCart, updateQuantity } = useCart();
+  const { cart, removeFromCart, updateQuantity, clearCart } = useCart();
 
   // O estado agora reflete exatamente o novo banco de dados
   const [formData, setFormData] = useState({
@@ -153,6 +153,13 @@ const handleSubmit = async (e) => {
                 </div>
               </div>
             ))}
+            <button
+              type="button"
+              className={styles.removeBtn}
+              onClick={clearCart}
+            >
+              Limpar Carrinho
+            </button>
           </div>
 
           <div className={styles.totalBox}>
