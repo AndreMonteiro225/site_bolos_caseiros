@@ -44,7 +44,7 @@ export async function POST(request) {
       }
     });
 
-    return NextResponse.json({ success: true, url: resposta.sandbox_init_point });
+    return NextResponse.json({ success: true, url: resposta.init_point });
 
   } catch (error) {
     console.error("Erro no Mercado Pago:", error);
