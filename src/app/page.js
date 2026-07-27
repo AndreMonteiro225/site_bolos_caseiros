@@ -16,7 +16,7 @@ const bolosMock = [
     ingredientes: "Massa fofinha de fubá com generosos pedaços de goiabada cascão...",
     preco: "59.90",
     img: "/bolo_de_cenoura.png",
-    fatia: "9.90",
+    fatia: "1.00",
     boloInteiro: "59.90",
     priority: true,
   },
