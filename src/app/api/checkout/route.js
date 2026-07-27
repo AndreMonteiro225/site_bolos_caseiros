@@ -41,7 +41,8 @@ export async function POST(request) {
           pending: `${origin}/carrinho`
         },
         auto_return: 'approved',
-      }
+      },
+    },
     });
 
     return NextResponse.json({ success: true, url: resposta.init_point });
