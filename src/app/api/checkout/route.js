@@ -31,10 +31,8 @@ export async function POST(request) {
             { id: "atm" }     // Bloqueia Pagamento em Lotérica
           ],
            installments: 1,
-           pix: {
-            enabled: true
         },
-
+        
         back_urls: {
           success: `${origin}/sucesso`,
           failure: `${origin}/carrinho`,
@@ -42,7 +40,6 @@ export async function POST(request) {
         },
         auto_return: 'approved',
       },
-    },
     });
 
     return NextResponse.json({ success: true, url: resposta.init_point });
