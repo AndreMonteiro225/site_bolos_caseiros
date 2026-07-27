@@ -7,7 +7,7 @@ import Image from 'next/image';
 import CakeCard from './components/CakeCard/CakeCard';
 import Modal from './components/Modal/Modal';
 import styles from './page.module.css';
-// Dados dos Bolos (Mock)
+
 const bolosMock = [
   {
     id: 1,
