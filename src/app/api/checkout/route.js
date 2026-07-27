@@ -31,8 +31,8 @@ export async function POST(request) {
             { id: "atm" }     // Bloqueia Pagamento em Lotérica
           ],
            installments: 1,
-           operation_type: ['regular_payment', 'money_transfer', 'pix', 'credit_card', 'debit_card', 'prepaid_card', 'account_money', 'digital_currency'],
-           
+           pix: {
+            enabled: true
         },
 
         back_urls: {
