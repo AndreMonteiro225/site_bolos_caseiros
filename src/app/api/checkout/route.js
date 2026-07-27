@@ -25,16 +25,15 @@ export async function POST(request) {
         external_reference: String(pedidoId),
         notification_url: `${origin}/api/webhook`, 
         
-        // --- NOVA CONFIGURAÇÃO DE PAGAMENTOS ---
         payment_methods: {
           excluded_payment_types: [
             { id: "ticket" }, // Bloqueia Boleto Bancário
             { id: "atm" }     // Bloqueia Pagamento em Lotérica
           ],
-           pix: 1,
-           installments: 1
+           installments: 1,
+           operation_type: ['regular_payment', 'money_transfer', 'pix', 'credit_card', 'debit_card', 'prepaid_card', 'account_money', 'digital_currency'],
+           
         },
-        // ---------------------------------------
 
         back_urls: {
           success: `${origin}/sucesso`,
