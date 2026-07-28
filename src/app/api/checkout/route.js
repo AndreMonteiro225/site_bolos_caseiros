@@ -30,7 +30,7 @@ export async function POST(request) {
             { id: "ticket" }, // Bloqueia Boleto Bancário
             { id: "atm" }     // Bloqueia Pagamento em Lotérica
           ],
-           installments: 1,
+          // installments: 1,
         },
         
         back_urls: {
