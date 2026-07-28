@@ -252,3 +252,15 @@
   text-align: center;
   color: var(--cor-texto);
 }
+
+.addToCart {
+  background-color: var(--cor-cta);
+  color: var(--cor-fundo);
+  font-weight: 700;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  font-size: 1.125rem;
+  box-shadow: 2px 4px 6px -1px rgba(0, 0, 0, 0.5);
+  transition: background-color 0.2s ease-in-out;
+  margin-top: 1.2rem;
+}

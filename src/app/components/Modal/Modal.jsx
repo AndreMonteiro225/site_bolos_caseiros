@@ -111,7 +111,7 @@ export default function Modal({ bolo, onClose }) {
                     </button>
                   </div>
                 </div>
-
+                <button onClick={onClose} className={styles.addToCart}>Adicionar ao carrinho</button>
               </div>
             </div>
           </div>

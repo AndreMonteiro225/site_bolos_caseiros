@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import { useCart } from "../context/CartContext"; 
 
 export default function Sucesso() {
-  const { clearCart } = useCart(); // Função que zera o carrinho
+  const { clearCart } = useCart();
 
   useEffect(() => {
     // Assim que o cliente cai nessa tela, nós esvaziamos o carrinho dele
