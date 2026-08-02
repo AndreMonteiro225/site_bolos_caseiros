@@ -293,25 +293,6 @@ const handleSubmit = async (e) => {
             )}
 
             <div className={styles.inputGroup}>
-              <label>Forma de Pagamento *</label>
-              <select
-                name="metodoPagamento"
-                value={formData.metodoPagamento}
-                onChange={handleChange}
-                className={styles.input}
-              >
-                <option value="PIX">PIX</option>
-                <option value="Cartão de Crédito">
-                  Cartão de Crédito (na entrega)
-                </option>
-                <option value="Cartão de Débito">
-                  Cartão de Débito (na entrega)
-                </option>
-                <option value="Dinheiro">Dinheiro</option>
-              </select>
-            </div>
-
-            <div className={styles.inputGroup}>
               <label>Observações do Pedido (Opcional)</label>
               <textarea
                 name="observacoes"
@@ -323,7 +304,7 @@ const handleSubmit = async (e) => {
             </div>
 
             <button type="submit" className={styles.submitButton}>
-              Confirmar Pedido (WhatsApp)
+              Confirmar Pedido
             </button>
           </form>
         </div>
