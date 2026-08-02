@@ -4,24 +4,38 @@ import { NextResponse } from 'next/server';
 export async function POST(request) {
   try {
     const body = await request.json();
-    const { formData, cart, valorTotal } = body;
+    
+    // 1. Recebemos o 'endereco' (do ViaCEP) junto com o que você já tinha
+    const { formData, cart, valorTotal, endereco } = body;
 
-    // 1. Insere na tabela 'pedidos'
+    // 2. Mesclamos os dados. Se o ViaCEP achou, usamos ele. Se não, usamos o formData antigo por segurança.
+    const rua = endereco?.logradouro || formData?.enderecoRua || null;
+    const num = endereco?.numero || formData?.enderecoNumero || null;
+    const bairro = endereco?.bairro || formData?.enderecoBairro || null;
+    const comp = endereco?.complemento || formData?.enderecoComplemento || null;
+    const cepViaCep = endereco?.cep || null;
+    const cidade = endereco?.localidade || null; // O ViaCEP chama cidade de 'localidade'
+    const uf = endereco?.uf || null;
+
+    // 3. Insere na tabela 'pedidos' (Agora com cep, cidade e uf inclusos)
     const queryPedido = `
       INSERT INTO pedidos (
         cliente_nome, telefone, tipo_pedido, endereco_rua, endereco_numero,
-        endereco_bairro, endereco_complemento, metodo_pagamento, observacoes, valor_total
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        endereco_bairro, endereco_complemento, cep, cidade, uf, metodo_pagamento, observacoes, valor_total
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `;
     
     const valuesPedido = [
       formData.nome,
       formData.telefone,
       formData.tipoPedido,
-      formData.tipoPedido === 'Entrega' ? formData.enderecoRua : null,
-      formData.tipoPedido === 'Entrega' ? formData.enderecoNumero : null,
-      formData.tipoPedido === 'Entrega' ? formData.enderecoBairro : null,
-      formData.tipoPedido === 'Entrega' ? formData.enderecoComplemento : null,
+      formData.tipoPedido === 'Entrega' ? rua : null,
+      formData.tipoPedido === 'Entrega' ? num : null,
+      formData.tipoPedido === 'Entrega' ? bairro : null,
+      formData.tipoPedido === 'Entrega' ? comp : null,
+      formData.tipoPedido === 'Entrega' ? cepViaCep : null,
+      formData.tipoPedido === 'Entrega' ? cidade : null,
+      formData.tipoPedido === 'Entrega' ? uf : null,
       formData.metodoPagamento,
       formData.observacoes || null,
       valorTotal
@@ -30,7 +44,7 @@ export async function POST(request) {
     const [resultPedido] = await pool.execute(queryPedido, valuesPedido);
     const pedidoId = resultPedido.insertId;
 
-    // 2. Insere na tabela 'itens_pedido'
+    // 4. Insere na tabela 'itens_pedido'
     const queryItens = `
       INSERT INTO itens_pedido (pedido_id, bolo_id, nome_bolo, tipo, quantidade, preco_unitario)
       VALUES (?, ?, ?, ?, ?, ?)

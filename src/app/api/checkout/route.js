@@ -4,12 +4,14 @@ import { NextResponse } from 'next/server';
 export async function POST(request) {
   try {
     const body = await request.json();
-    const { cart, pedidoId } = body;
+
+    const { cart, pedidoId, taxaEntrega } = body;
 
     const origin = request.nextUrl.origin;
 
     const client = new MercadoPagoConfig({ accessToken: process.env.MP_ACCESS_TOKEN });
 
+    // Prepara os itens dos bolos
     const itemsMP = cart.map(item => ({
       id: String(item.id),
       title: `Bolo ${item.nome}`,
@@ -18,31 +20,42 @@ export async function POST(request) {
       currency_id: 'BRL',
     }));
 
+    // SE HOUVER TAXA DE ENTREGA, ADICIONA COMO UM ITEM EXTRA NA COBRANÇA
+    if (taxaEntrega && taxaEntrega > 0) {
+        itemsMP.push({
+            id: 'frete',
+            title: 'Taxa de Entrega',
+            quantity: 1,
+            unit_price: Number(taxaEntrega),
+            currency_id: 'BRL',
+        });
+    }
+
     const preference = new Preference(client);
     const resposta = await preference.create({
       body: {
         items: itemsMP,
-        external_reference: String(pedidoId),
-        notification_url: `${origin}/api/webhook`, 
+        external_reference: String(pedidoId), 
         
+        notification_url: `${origin}/api/webhook`,
+
         payment_methods: {
           excluded_payment_types: [
-            { id: "ticket" }, // Bloqueia Boleto Bancário
-            { id: "atm" }     // Bloqueia Pagamento em Lotérica
+            { id: "ticket" }, 
+            { id: "atm" }     
           ],
-          // installments: 1,
         },
-        
+
         back_urls: {
           success: `${origin}/sucesso`,
           failure: `${origin}/carrinho`,
           pending: `${origin}/carrinho`
         },
         auto_return: 'approved',
-      },
+      }
     });
 
-    return NextResponse.json({ success: true, url: resposta.init_point });
+    return NextResponse.json({ success: true, url: resposta.init_point }); 
 
   } catch (error) {
     console.error("Erro no Mercado Pago:", error);
