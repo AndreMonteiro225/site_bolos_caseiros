@@ -10,7 +10,7 @@ const pool = mysql.createPool({
     rejectUnauthorized: false // Isso avisa ao MySQL2 que a conexão deve ser segura
   },
   waitForConnections: true,
-  connectionLimit: 10,
+  connectionLimit: 3,
   queueLimit: 0
 });
 
