@@ -1,10 +1,11 @@
 import pool from '@/lib/db';
 import { NextResponse } from 'next/server';
+import { isAdmin } from '@/lib/auth';
 
 export async function POST(request) {
   try {
     const body = await request.json();
-    
+
     // 1. Recebemos o 'endereco' (do ViaCEP) junto com o que você já tinha
     const { formData, cart, valorTotal, endereco } = body;
 
@@ -24,7 +25,7 @@ export async function POST(request) {
         endereco_bairro, endereco_complemento, cep, cidade, uf, metodo_pagamento, observacoes, valor_total
       ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `;
-    
+
     const valuesPedido = [
       formData.nome,
       formData.telefone,
@@ -70,7 +71,10 @@ export async function POST(request) {
 }
 
 // Busca os pedidos e seus respectivos bolos
-export async function GET() {
+export async function GET(request) {
+  if (!isAdmin(request)) {
+    return NextResponse.json({ success: false, message: 'Não autorizado' }, { status: 401 });
+  }
   try {
     // 1. Busca todos os pedidos
     const queryPedidos = `SELECT * FROM pedidos ORDER BY criado_em DESC`;
@@ -85,27 +89,30 @@ export async function GET() {
     for (let i = 0; i < pedidos.length; i++) {
       const queryItens = `SELECT * FROM itens_pedido WHERE pedido_id = ?`;
       const [itens] = await pool.execute(queryItens, [pedidos[i].id]);
-      
+
       // Gruda os itens dentro do objeto do pedido
-      pedidos[i].itens = itens; 
+      pedidos[i].itens = itens;
     }
 
-    return NextResponse.json({ 
-      success: true, 
-      pedidos: pedidos 
+    return NextResponse.json({
+      success: true,
+      pedidos: pedidos
     }, { status: 200 });
 
   } catch (error) {
     console.error('Erro ao buscar pedidos com itens:', error);
-    return NextResponse.json({ 
-      success: false, 
-      message: 'Erro interno ao buscar pedidos.' 
+    return NextResponse.json({
+      success: false,
+      message: 'Erro interno ao buscar pedidos.'
     }, { status: 500 });
   }
 }
 
 // Atualiza o status do pedido no painel de administração
 export async function PUT(request) {
+  if (!isAdmin(request)) {                // <-- NOVO
+    return NextResponse.json({ success: false, message: 'Não autorizado' }, { status: 401 });
+  }
   try {
     const body = await request.json();
     const { id, novoStatus } = body;
@@ -123,6 +130,9 @@ export async function PUT(request) {
 
 // Deleta um pedido permanentemente do banco de dados
 export async function DELETE(request) {
+  if (!isAdmin(request)) {                // <-- NOVO
+    return NextResponse.json({ success: false, message: 'Não autorizado' }, { status: 401 });
+  }
   try {
     const body = await request.json();
     const { id } = body;
